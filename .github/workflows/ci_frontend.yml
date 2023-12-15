@@ -1,0 +1,40 @@
+name: CI Frontend
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  run_eslint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - run: |
+          cd frontend
+          npm i
+          npm run lint
+
+  run_vitest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - run: |
+          cd frontend
+          npm i
+          npm run test:ui
