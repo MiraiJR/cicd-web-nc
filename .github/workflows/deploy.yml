@@ -24,4 +24,3 @@ jobs:
           cd ..
           pm2 start npm --name "github_action" -- run start
           pm2 save
-          sudo service nginx restart
