@@ -17,11 +17,11 @@ jobs:
         with:
           node-version: 18
       - run: |
-          npm i
+          npm install
           cd frontend
-          npm i
+          npm install
           npm run build
-          pm2 start npm --name "front-end" -- run dev
+          nohup pm2 start npm --name "front-end" -- run dev &
           cd ..
-          pm2 start npm --name "back-end" -- run start
+          nohup pm2 start npm --name "back-end" -- run start &
           pm2 save
