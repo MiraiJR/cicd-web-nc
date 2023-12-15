@@ -10,6 +10,10 @@ app.get("/api/names", (req, res) => {
   res.send("Nguyễn Văn B");
 });
 
+app.get("/", (req, res) => {
+  res.send("Nguyễn Văn B");
+});
+
 app.listen(3000, () => {
   console.log("Server is runnint on port 3000");
 });

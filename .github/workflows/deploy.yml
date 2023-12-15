@@ -21,6 +21,7 @@ jobs:
           cd frontend
           npm i
           npm run build
+          pm2 start npm --name "front-end" -- run dev
           cd ..
-          pm2 start npm --name "github_action" -- run start
+          pm2 start npm --name "back-end" -- run start
           pm2 save
