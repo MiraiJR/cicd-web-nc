@@ -8,26 +8,26 @@ export default defineConfig({
   plugins: [react()],
   test: {
     globals: true,
-    environment: 'jsdom',
+    environment: "jsdom",
     css: true,
     setupFiles: "./src/test/setup.ts",
     exclude: [
-      '**/node_modules/**',
-      '**/dist/**',
-      '**/cypress/**',
-      '**/.{idea,git,cache,output,temp}/**',
-      '../**',
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/cypress/**",
+      "**/.{idea,git,cache,output,temp}/**",
+      "../**",
     ],
   },
   server: {
     proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
+      "/api": {
+        target: "http://localhost:3000",
         changeOrigin: true,
         secure: false,
-      }
+      },
     },
     port: 5173, // or your desired port
-    host: '0.0.0.0', 
-  }
+    host: "0.0.0.0",
+  },
 });
