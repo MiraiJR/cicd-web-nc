@@ -14,6 +14,6 @@ app.get("/", (req, res) => {
   res.send("Nguyễn Văn B");
 });
 
-app.listen(3000, () => {
+app.listen(3000,  '0.0.0.0', () => {
   console.log("Server is runnint on port 3000");
 });
