@@ -10,15 +10,14 @@ on:
 jobs:
   build:
     runs-on: self-hosted
-    outputs:
-      # Use the job ID as the tracking ID
-      runner_tracking_id: ${{ github.job }}
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Set Runner Tracking ID
+        run: echo "RUNNER_TRACKING_ID=${{ github.job }}" >> $GITHUB_ENV
       - run: |
           npm i
           cd frontend
@@ -26,6 +25,5 @@ jobs:
           npm run build
           pm2 start npm --name "front-end" -- run dev
           cd ..
-
-    # Use the outputs in the post job cleanup
-    post-job-cleanup: ${{ needs.build.outputs.runner_tracking_id }}
+          pm2 start npm --name "back-end" -- run start
+          pm2 save
