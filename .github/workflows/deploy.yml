@@ -19,6 +19,8 @@ jobs:
       - name: Set Runner Tracking ID
         run: echo "RUNNER_TRACKING_ID=${{ github.job }}" >> $GITHUB_ENV
       - run: |
+          pm2 delete all
+          pm2 save
           npm i
           cd frontend
           npm i
